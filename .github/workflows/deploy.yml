@@ -28,5 +28,5 @@ jobs:
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: flask-webapp
+        app-name: flask-backend
         images: mariana.azurecr.io/flask-backend:latest
