@@ -1,0 +1,29 @@
+name: Deploy to Azure Web App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Log in to ACR
+      run: |
+        echo ${{ secrets.ACR_PASSWORD }} | docker login mariana.azurecr.io -u mariana --password-stdin
+
+    - name: Build and Push Docker image
+      run: |
+        docker build -t mariana.azurecr.io/flask-backend:latest .
+        docker push mariana.azurecr.io/flask-backend:latest
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: flask-backend  # Nombre de tu Web App en Azure
+        images: mariana.azurecr.io/flask-backend:latest
