@@ -10,8 +10,8 @@ COPY . .
 # Instala las dependencias necesarias
 RUN pip install flask
 
-# Expone el puerto 5000 para Flask
-EXPOSE 5000
+# Expone el puerto para Flask
+EXPOSE 80
 
 # Comando para ejecutar la aplicación
 CMD ["python", "app.py"]
