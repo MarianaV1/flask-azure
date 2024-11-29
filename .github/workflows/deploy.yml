@@ -15,7 +15,7 @@ jobs:
       
     - name: Log in to ACR
       run: |
-        echo ${{ secrets.ACR_PASSWORD }} | docker login mariana.azurecr.io -u <mariana> --password-stdin
+        echo ${{ secrets.ACR_PASSWORD }} | docker login mariana.azurecr.io -u mariana --password-stdin
 
     - name: Build and Push Docker image
       run: |
