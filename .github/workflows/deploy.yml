@@ -1,4 +1,4 @@
-name: Deploy Flask App to Azure
+name: Deploy to Azure Web App
 
 on:
   push:
@@ -16,17 +16,17 @@ jobs:
     - name: Log in to Azure Container Registry
       uses: azure/docker-login@v1
       with:
-        login-server: tuacr.azurecr.io
-        username: mariana
-        password: v+OQC0+LkSNqmCwip/Ip6PAxQc8So7elctxsbYz4PM+ACRBa/b7Y
+        login-server: mariana.azurecr.io
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
 
     - name: Build and Push Docker image
       run: |
-        docker build -t tuacr.azurecr.io/flask-backend:latest .
-        docker push tuacr.azurecr.io/flask-backend:latest
+        docker build -t mariana.azurecr.io/flask-backend:latest .
+        docker push mariana.azurecr.io/flask-backend:latest
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
         app-name: flask-webapp
-        images: tuacr.azurecr.io/flask-backend:latest
+        images: mariana.azurecr.io/flask-backend:latest
