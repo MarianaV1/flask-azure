@@ -17,8 +17,8 @@ jobs:
       uses: azure/docker-login@v1
       with:
         login-server: tuacr.azurecr.io
-        username: ${{ secrets.ACR_USERNAME }}
-        password: ${{ secrets.ACR_PASSWORD }}
+        username: mariana
+        password: v+OQC0+LkSNqmCwip/Ip6PAxQc8So7elctxsbYz4PM+ACRBa/b7Y
 
     - name: Build and Push Docker image
       run: |
