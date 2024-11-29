@@ -21,3 +21,9 @@ jobs:
       run: |
         docker build -t mariana.azurecr.io/flask-backend:latest .
         docker push mariana.azurecr.io/flask-backend:latest
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: flask-backend  # Nombre de tu Web App en Azure
+        images: mariana.azurecr.io/flask-backend:latest
